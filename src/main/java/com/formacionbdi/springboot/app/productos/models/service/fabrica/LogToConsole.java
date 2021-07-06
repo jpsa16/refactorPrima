@@ -10,7 +10,7 @@ public class LogToConsole implements LoggerDemo {
 
     @Override
     public void logMessage(String messageText) {
-        String mensaje = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String mensaje = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
         Logger logger = Logger.getLogger("MyLog1");
 
         ConsoleHandler ch = new ConsoleHandler();
@@ -20,7 +20,7 @@ public class LogToConsole implements LoggerDemo {
 
     @Override
     public void logWarning(String messageText) {
-        String mensaje = "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String mensaje = "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
         Logger logger = Logger.getLogger("MyLog2");
 
         ConsoleHandler ch = new ConsoleHandler();
@@ -30,7 +30,7 @@ public class LogToConsole implements LoggerDemo {
 
     @Override
     public void logError(String messageText) {
-        String mensaje = "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String mensaje = "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
         Logger logger = Logger.getLogger("MyLog3");
 
         ConsoleHandler ch = new ConsoleHandler();

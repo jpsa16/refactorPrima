@@ -22,7 +22,7 @@ public class LogToFile implements LoggerDemo {
 
     @Override
     public void logMessage(String messageText) {
-        String l = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String l = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
 
         if (!logFile.exists()) {
             try {
@@ -39,7 +39,7 @@ public class LogToFile implements LoggerDemo {
 
     @Override
     public void logWarning(String messageText) {
-        String l = "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String l = "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
 
         if (!logFile.exists()) {
             try {
@@ -56,7 +56,7 @@ public class LogToFile implements LoggerDemo {
 
     @Override
     public void logError(String messageText) {
-        String l = "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String l = "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
 
         if (!logFile.exists()) {
             try {

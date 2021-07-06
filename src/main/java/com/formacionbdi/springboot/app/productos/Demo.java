@@ -1,4 +1,4 @@
-package com.formacionbdi.springboot.app.productos.models.service;
+package com.formacionbdi.springboot.app.productos;
 
 import java.io.File;
 import java.sql.Connection;
@@ -15,13 +15,14 @@ import java.util.logging.Logger;
 
 //TODO: Esta muy acoplado y se podria implementar el patron fabrica para que mediante un identificador se obtenga la implementacion de tipo de log que se desea
 public class Demo {
+    // TODO: deberia tener un mejor ordenamiento las variables que tienen relacion
     private static boolean logToFile;
     private static boolean logToConsole;
     private static boolean logMessage;
     private static boolean logWarning;
     private static boolean logError;
-    private static boolean logToDatabase; // TODO: ordenarlo
-    private boolean initialized; // TODO: variable no se usa
+    private static boolean logToDatabase;
+    private boolean initialized; // TODO: variable no se usa y deberia eliminarse
     private static Map dbParams;
     private static Logger logger;
 
@@ -37,8 +38,9 @@ public class Demo {
         dbParams = dbParamsMap;
     }
 
+    //TODO: tiene muchos IF y con el patron en la solucion se evita esto
     public static void LogMessage(String messageText, boolean message, boolean warning, boolean error) throws Exception {
-        messageText.trim();
+        messageText.trim(); //TODO: no va tener efecto el trim(). Deberia asignarse a una variable y esta ser utilizada o usarlo en el momento correcto
         if (messageText == null || messageText.length() == 0) {
             return;
         }
@@ -50,12 +52,13 @@ public class Demo {
         }
 
         //TODO: crea la conexion innecesarioamente si no le corresponde el log
-        //TODO: Se deberia crear una clase conexion
+        //TODO: Se deberia crear una clase conexion para desacoplar codigo
         Connection connection = null;
         Properties connectionProps = new Properties();
         connectionProps.put("user", dbParams.get("userName"));
         connectionProps.put("password", dbParams.get("password"));
 
+        //TODO: no se cierra la conexion
         connection = DriverManager.getConnection("jdbc:" + dbParams.get("dbms") + "://" + dbParams.get("serverName")
                 + ":" + dbParams.get("portNumber") + "/", connectionProps);
 
@@ -77,7 +80,7 @@ public class Demo {
         //TODO: se deberia usar un prepareStatement
         Statement stmt = connection.createStatement();
 
-        //TODO: va crear el file sin importar que tipo de log es
+        //TODO: va crear el file sin importar que tipo de log es (warning, mesagge o error)
         //TODO: la ruta deberia estar en un properties
         String l = null;
         File logFile = new File(dbParams.get("logFileFolder") + "/logFile.txt");
@@ -88,7 +91,7 @@ public class Demo {
         FileHandler fh = new FileHandler(dbParams.get("logFileFolder") + "/logFile.txt");
         ConsoleHandler ch = new ConsoleHandler();
 
-        //TODO: no se usa la variable l
+        //TODO: no se usa la variable "l"
         if (error && logError) { // TODO: redundantes booleanos
             l = l + "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText;
         }
@@ -101,7 +104,7 @@ public class Demo {
             l = l + "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText;
         }
 
-        //TODO: apartir de este lado se tendria que usar la variable l para que pinte dependiendo que tipo de error es
+        //TODO: apartir de este lado se tendria que usar la variable "l" para que pinte dependiendo que tipo de error es
         if (logToFile) {
             logger.addHandler(fh);
             logger.log(Level.INFO, messageText);

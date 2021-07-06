@@ -1,11 +1,11 @@
 package com.formacionbdi.springboot.app.productos.models.service.fabrica;
 
-import com.formacionbdi.springboot.app.productos.SpringbootServicioProductosApplication;
+import com.formacionbdi.springboot.app.productos.SpringbootApplication;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = SpringbootServicioProductosApplication.class)
+@SpringBootTest(classes = SpringbootApplication.class)
 public class LoggerFabricaTest  {
     LoggerFabrica loggerFabrica = new LoggerFabrica();
 

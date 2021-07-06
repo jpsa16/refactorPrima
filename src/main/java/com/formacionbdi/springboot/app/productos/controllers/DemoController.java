@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ProductoController {
+public class DemoController {
 	
 	@Value("${server.port}")
 	private Integer port;
@@ -23,13 +23,13 @@ public class ProductoController {
 		LoggerDemo logToFile = loggerFabrica.getLoggerDemo("logToFile");
 		LoggerDemo logToDatabase = loggerFabrica.getLoggerDemo("logToDatabase");
 
-		/*logToConsole.logMessage("mensaje logToConsole message");
+		logToConsole.logMessage("mensaje logToConsole message");
 		logToConsole.logWarning("mensaje logToConsole warning");
 		logToConsole.logError("mensaje logToConsole error");
 
 		logToFile.logMessage("mensaje logToFile message");
 		logToFile.logWarning("mensaje logToFile warning");
-		logToFile.logError("mensaje logToFile error");*/
+		logToFile.logError("mensaje logToFile error");
 
 		logToDatabase.logMessage("logToDatabase message");
 		logToDatabase.logWarning("logToDatabase warning");

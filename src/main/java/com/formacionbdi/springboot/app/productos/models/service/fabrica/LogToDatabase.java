@@ -11,7 +11,7 @@ public class LogToDatabase implements LoggerDemo {
 
     @Override
     public void logMessage(String messageText) {
-        String mensaje = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String mensaje = "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
         try {
             PreparedStatement consulta;
             consulta = Conexion.obtener().prepareStatement("INSERT INTO log_values" + "(mensaje, valor) VALUES(?, ?)");
@@ -25,7 +25,7 @@ public class LogToDatabase implements LoggerDemo {
 
     @Override
     public void logWarning(String messageText) {
-        String mensaje = "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String mensaje = "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
         try {
             PreparedStatement consulta;
             consulta = Conexion.obtener().prepareStatement("INSERT INTO log_values" + "(mensaje, valor) VALUES(?, ?)");
@@ -39,7 +39,7 @@ public class LogToDatabase implements LoggerDemo {
 
     @Override
     public void logError(String messageText) {
-        String mensaje = "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText;
+        String mensaje = "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + " " + messageText.trim();
         try {
             PreparedStatement consulta;
             consulta = Conexion.obtener().prepareStatement("INSERT INTO log_values" + "(mensaje, valor) VALUES(?, ?)");
